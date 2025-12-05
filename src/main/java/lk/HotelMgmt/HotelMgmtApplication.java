@@ -9,7 +9,7 @@ public class HotelMgmtApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(HotelMgmtApplication.class, args);
-		System.out.println("HotelMgmtApplication Application Started");
+
 	}
 
 }
