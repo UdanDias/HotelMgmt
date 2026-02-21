@@ -9,6 +9,6 @@ public class HotelMgmtApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HotelMgmtApplication.class, args);
 		System.out.println("Hotel Booking System Application Started");
+        System.out.println("This is my first first comment");
 	}
-
 }
