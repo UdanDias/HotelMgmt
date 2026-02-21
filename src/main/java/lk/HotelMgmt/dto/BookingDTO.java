@@ -17,10 +17,10 @@ public class BookingDTO implements Serializable {
     private String hotelId;
     private String roomId;
     private String userId;
-    private LocalDate checkInDate;
-    private LocalDate checkOutDate;
-    private LocalDate bookedDate;
-    private Time bookedTime;
+    private String checkInDate;
+    private String checkOutDate;
+    private String bookedDate;
+    private String bookedTime;
     private boolean isBookingActive;
     private Integer noOfDaysBooked;
 }

@@ -43,6 +43,71 @@ public class BookingController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/getSelectedBooking")
+    public ResponseEntity<BookingDTO> getSelectedBooking(String bookingId ){
+        if(bookingId == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity.ok(new BookingDTO(
+                "BKG-001",
+                "HTL-001",
+                "RM-101",
+                "USR-201",
+                "2024-01-12",
+                "2024-01-15",
+                "2024-01-30",
+                "14:08",
+                true,
+                5
+        ));
+    }
+
+    @GetMapping("/getAllBookings")
+    public ResponseEntity<List<BookingDTO>> getAllBookings() {
+
+        List<BookingDTO> bookingList = new ArrayList<>();
+
+        bookingList.add(new BookingDTO(
+                "BKG-001",
+                "HTL-002",
+                "RM-101",
+                "USR-201",
+                "2024, 1, 12",
+                "2024, 1, 15",
+                "2024, 1, 10",
+                "14, 8",
+                true,
+                3
+        ));
+
+        bookingList.add(new BookingDTO(
+                "BKG-002",
+                "HTL-003",
+                "RM-205",
+                "USR-202",
+                "2024, 2, 5",
+                "2024, 2, 8",
+                "2024, 2, 1",
+                "10, 30",
+                true,
+                3
+        ));
+
+        bookingList.add(new BookingDTO(
+                "BKG-003",
+                "HTL-004",
+                "RM-301",
+                "USR-203",
+                "2024, 3, 1",
+                "2024, 3, 4",
+                "2024, 2, 28",
+                "9, 15",
+                false,
+                3
+        ));
+
+        return ResponseEntity.ok(bookingList);
+    }
 
 
 }

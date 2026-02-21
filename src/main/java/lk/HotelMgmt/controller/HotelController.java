@@ -64,7 +64,7 @@ public class HotelController {
         ));
     }
 
-    @GetMapping("/getAllHotel")
+    @GetMapping("/getAllHotels")
     public ResponseEntity<List<HotelDTO>> getAllHotels(){
         List<HotelDTO> hotelList = new ArrayList<>();
 
