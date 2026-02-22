@@ -1,8 +1,9 @@
 package lk.HotelMgmt.controller;
 
 import lk.HotelMgmt.dto.HotelDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("api/v1/hotel")
+@RequiredArgsConstructor
 
 public class HotelController {
     @GetMapping

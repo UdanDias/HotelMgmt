@@ -1,7 +1,7 @@
 package lk.HotelMgmt.controller;
 
 import lk.HotelMgmt.dto.BookingDTO;
-import lk.HotelMgmt.dto.HotelDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
+@RestController
+@RequestMapping("api/v1/booking")
+@RequiredArgsConstructor
 
 public class BookingController {
     @GetMapping
