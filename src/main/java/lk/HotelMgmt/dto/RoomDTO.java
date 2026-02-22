@@ -9,8 +9,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 public class RoomDTO implements Serializable {
-    private Long roomId;
-    private Long hotelId;
+    private String roomId;
+    private String hotelId;
     private String roomNo;
     private String description;
     private String roomType;
