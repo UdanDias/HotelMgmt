@@ -16,7 +16,7 @@ public class HotelDTO implements Serializable{
     private String description;
     private String location;
     private Double rating;
-    private String phoneNumber;
+    private String phone;
     private String email;
     private Integer availableRooms;
 

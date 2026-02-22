@@ -17,11 +17,11 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 public class BookingController {
     @GetMapping
-    public String healthtest(){
+    public String healthTest(){
         return "Health controller is running";
     }
 
-    @PostMapping(value = "addbooking",consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "addBooking",consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addBooking(@RequestBody BookingDTO bookingDTO){
         if(bookingDTO == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -30,16 +30,16 @@ public class BookingController {
 
     }
 
-    @DeleteMapping("/deletebooking")
-    public ResponseEntity<Void> deleteBooking(String bookingId){
+    @DeleteMapping("/deleteBooking")
+    public ResponseEntity<Void> deleteBooking(@RequestParam String bookingId){
         if(bookingId == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PatchMapping(value = "/updatebooking",consumes = APPLICATION_JSON_VALUE,produces = APPLICATION_JSON_VALUE )
-    public ResponseEntity<Void> updateBooking(String bookingId, BookingDTO bookingDTO){
+    @PatchMapping(value = "/updateBooking",consumes = APPLICATION_JSON_VALUE,produces = APPLICATION_JSON_VALUE )
+    public ResponseEntity<Void> updateBooking(@RequestParam String bookingId,@RequestBody BookingDTO bookingDTO){
         if(bookingDTO == null || bookingId == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -48,7 +48,7 @@ public class BookingController {
     }
 
     @GetMapping("/getSelectedBooking")
-    public ResponseEntity<BookingDTO> getSelectedBooking(String bookingId ){
+    public ResponseEntity<BookingDTO> getSelectedBooking(@RequestParam String bookingId ){
         if(bookingId == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -66,7 +66,7 @@ public class BookingController {
         ));
     }
 
-    @GetMapping("/getAllBookings")
+    @GetMapping("/getAllBooking")
     public ResponseEntity<List<BookingDTO>> getAllBookings() {
 
         List<BookingDTO> bookingList = new ArrayList<>();
@@ -112,6 +112,4 @@ public class BookingController {
 
         return ResponseEntity.ok(bookingList);
     }
-
-
 }

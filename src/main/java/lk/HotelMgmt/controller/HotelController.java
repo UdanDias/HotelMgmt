@@ -18,11 +18,11 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 public class HotelController {
     @GetMapping
-    public String healthtest(){
+    public String healthTest(){
         return "Health controller is running";
     }
 
-    @PostMapping(value = "addhotel",consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "addHotel",consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addHotel(@RequestBody HotelDTO hotelDTO){
         if(hotelDTO == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -31,16 +31,16 @@ public class HotelController {
 
     }
 
-    @DeleteMapping("/deletehotel")
-    public ResponseEntity<Void> deleteHotel(String hotelId){
+    @DeleteMapping("/deleteHotel")
+    public ResponseEntity<Void> deleteHotel(@RequestParam String hotelId){
         if(hotelId == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PatchMapping(value = "/updatehotel",consumes = APPLICATION_JSON_VALUE,produces = APPLICATION_JSON_VALUE )
-    public ResponseEntity<Void> updateHotel(String hotelId, HotelDTO hotelDTO){
+    @PatchMapping(value = "/updateHotel",consumes = APPLICATION_JSON_VALUE,produces = APPLICATION_JSON_VALUE )
+    public ResponseEntity<Void> updateHotel(@RequestParam String hotelId,@RequestBody HotelDTO hotelDTO){
         if(hotelDTO == null || hotelId == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -49,7 +49,7 @@ public class HotelController {
     }
 
     @GetMapping("/getSelectedHotel")
-    public ResponseEntity<HotelDTO> getSelectedHotel(String hotelId ){
+    public ResponseEntity<HotelDTO> getSelectedHotel(@RequestParam String hotelId ){
         if(hotelId == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -66,7 +66,7 @@ public class HotelController {
         ));
     }
 
-    @GetMapping("/getAllHotels")
+    @GetMapping("/getAllHotel")
     public ResponseEntity<List<HotelDTO>> getAllHotels(){
         List<HotelDTO> hotelList = new ArrayList<>();
 
