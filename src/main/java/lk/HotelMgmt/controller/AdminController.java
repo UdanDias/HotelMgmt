@@ -22,19 +22,31 @@ public class AdminController {
     }
     @PostMapping(value = "addadmin",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addAdmin(@RequestBody AdminDTO adminDTO) {
+        if (adminDTO.getUserId() == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @DeleteMapping("/deleteadmin")
     public ResponseEntity<Void> deleteAdmin(@RequestParam String adminId){
+        if (adminId == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @PatchMapping(value = "/updateadmin", consumes = APPLICATION_JSON_VALUE,produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> updateAdmin(@RequestParam String adminId,@RequestBody AdminDTO adminDTO){
+        if (adminId == null||adminDTO == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         System.out.println(adminDTO);
         return ResponseEntity.noContent().build();
     }
     @GetMapping("/getSelectedAdmin")
     public ResponseEntity<AdminDTO> getSelectedAdmin(@RequestParam String adminId){
+        if (adminId == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return ResponseEntity.ok(new AdminDTO(
                 "ADM-001",
                 "USR-101",
