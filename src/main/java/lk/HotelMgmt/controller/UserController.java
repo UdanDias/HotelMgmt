@@ -29,17 +29,26 @@ public class UserController {
 
     @DeleteMapping("/deleteuser")
     public ResponseEntity<Void> deleteUser(@RequestParam String userId) {
+        if (userId == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PatchMapping(value = "/updateuser", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> updateUser(@RequestParam String userId, @RequestBody UserDTO userDTO) {
+        if (userId == null||userDTO == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         System.out.println(userDTO);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/getSelectedUser")
     public ResponseEntity<UserDTO> getSelectedUser(@RequestParam String userId) {
+        if (userId == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return ResponseEntity.ok(new UserDTO(
                 "USR-001",
                 "john_doe",
