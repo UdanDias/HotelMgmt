@@ -21,22 +21,34 @@ public class RoomController {
 
     @PostMapping(value = "/addroom", consumes = MediaType. APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addRoom(@RequestBody RoomDTO roomDTO) {
+        if (roomDTO == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/deleteroom")
     public ResponseEntity<Void> deleteRoom(@RequestParam String roomId) {
+        if (roomId == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PatchMapping(value = "/updateroom", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> updateRoom(@RequestParam Long roomId, @RequestBody RoomDTO roomDTO) {
+        if (roomId == null||roomDTO == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         System.out.println(roomDTO);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/getSelectedRoom")
     public ResponseEntity<RoomDTO> getSelectedRoom(@RequestParam String roomId) {
+        if (roomId == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return ResponseEntity.ok(new RoomDTO(
                 "R001",
                 "H001",

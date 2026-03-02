@@ -21,6 +21,9 @@ public class UserController {
 
     @PostMapping(value = "/adduser", consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addUser(@RequestBody UserDTO userDTO) {
+        if (userDTO == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
