@@ -21,22 +21,32 @@ public class FeedBackController {
 
     @PostMapping(value = "/addfeedback", consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addFeedBack(@RequestBody FeedBackDTO feedBackDTO) {
+        if (feedBackDTO == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/deletefeedback")
     public ResponseEntity<Void> deleteFeedBack(@RequestParam String feedBackId) {
+        if (feedBackId == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PatchMapping(value = "/updatefeedback", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> updateFeedBack(@RequestParam String feedBackId, @RequestBody FeedBackDTO feedBackDTO) {
+        if (feedBackId == null|| feedBackDTO == null) {}
         System.out.println(feedBackDTO);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/getSelectedFeedBack")
     public ResponseEntity<FeedBackDTO> getSelectedFeedBack(@RequestParam String feedBackId) {
+        if (feedBackId == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return ResponseEntity.ok(new FeedBackDTO(
                 "FB-001",
                 "USR-101",
