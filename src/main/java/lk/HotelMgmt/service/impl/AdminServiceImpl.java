@@ -2,6 +2,7 @@ package lk.HotelMgmt.service.impl;
 
 import lk.HotelMgmt.dto.AdminDTO;
 import lk.HotelMgmt.service.AdminService;
+import lk.HotelMgmt.util.UtilData;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class AdminServiceImpl implements AdminService {
     @Override
     public void addAdmin(AdminDTO adminDTO) {
-
+        adminDTO.setAdminId(UtilData.generateAdminId());
     }
 
     @Override

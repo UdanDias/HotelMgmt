@@ -2,6 +2,7 @@ package lk.HotelMgmt.service.impl;
 
 import lk.HotelMgmt.dto.BookingDTO;
 import lk.HotelMgmt.service.BookingService;
+import lk.HotelMgmt.util.UtilData;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class BookingServiceImpl implements BookingService {
     @Override
     public void addBooking(BookingDTO bookingDTO) {
-
+        bookingDTO.setBookingId(UtilData.generateBookingId());
     }
 
     @Override

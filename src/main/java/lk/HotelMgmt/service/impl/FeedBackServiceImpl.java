@@ -2,6 +2,7 @@ package lk.HotelMgmt.service.impl;
 
 import lk.HotelMgmt.dto.FeedBackDTO;
 import lk.HotelMgmt.service.FeedBackService;
+import lk.HotelMgmt.util.UtilData;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class FeedBackServiceImpl implements FeedBackService {
     @Override
     public void addFeedBack(FeedBackDTO feedBackDTO) {
-
+        feedBackDTO.setFeedBackId(UtilData.generateFeedBackId());
     }
 
     @Override

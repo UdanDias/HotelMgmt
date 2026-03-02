@@ -2,6 +2,7 @@ package lk.HotelMgmt.service.impl;
 
 import lk.HotelMgmt.dto.HotelDTO;
 import lk.HotelMgmt.service.HotelService;
+import lk.HotelMgmt.util.UtilData;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class HotelServiceImpl implements HotelService {
     @Override
     public void addHotel(HotelDTO hotelDTO) {
-
+        hotelDTO.setHotelId(UtilData.generateHotelId());
     }
 
     @Override
