@@ -1,12 +1,11 @@
 package lk.HotelMgmt.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.engine.internal.Cascade;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +16,9 @@ import lombok.NoArgsConstructor;
 public class AdminEntity {
     @Id
     private String adminId;
-    private String userId;
+    @OneToOne
+    @JoinColumn(name = "user_id", unique = true, nullable = false)
+    private UserEntity userId;
     private String adminName;
     private String email;;
     private String phone;
