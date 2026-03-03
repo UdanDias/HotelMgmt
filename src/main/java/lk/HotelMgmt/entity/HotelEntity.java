@@ -2,10 +2,13 @@ package lk.HotelMgmt.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,4 +25,6 @@ public class HotelEntity {
     private String phone;
     private String email;
     private Integer availableRooms;
+    @OneToMany
+    private List<BookingEntity> bookings;
 }
