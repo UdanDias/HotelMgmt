@@ -36,11 +36,11 @@ public class EntityDTOConvert {
     public List<BookingDTO> convertBookingEntityListToBookingDTOList(List<BookingEntity> bookingEntityList){
         return modelMapper.map(bookingEntityList, new TypeToken<BookingDTO>(){}.getType());
     }
-    public HotelDTO convertHotelDTOToHotelEntity(HotelDTO hotelDTO){
-        return modelMapper.map(hotelDTO, HotelDTO.class);
-    }
-    public HotelEntity convertHotelEntityToHotelEntity(HotelDTO hotelDTO){
+    public HotelEntity convertHotelDTOToHotelEntity(HotelDTO hotelDTO){
         return modelMapper.map(hotelDTO, HotelEntity.class);
+    }
+    public HotelDTO convertHotelEntityToHotelDTO(HotelEntity hotelEntity){
+        return modelMapper.map(hotelEntity, HotelDTO.class);
     }
     public List<HotelDTO> convertHotelEntityListToHotelDTOList(List<HotelEntity> hotelEntityList){
         return modelMapper.map(hotelEntityList, new TypeToken<HotelDTO>(){}.getType());

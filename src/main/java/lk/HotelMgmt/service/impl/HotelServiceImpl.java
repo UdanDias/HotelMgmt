@@ -1,17 +1,36 @@
 package lk.HotelMgmt.service.impl;
 
+import jakarta.transaction.Transactional;
+import lk.HotelMgmt.dao.HotelDao;
 import lk.HotelMgmt.dto.HotelDTO;
+import lk.HotelMgmt.entity.HotelEntity;
 import lk.HotelMgmt.service.HotelService;
+import lk.HotelMgmt.util.EntityDTOConvert;
 import lk.HotelMgmt.util.UtilData;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
+@Transactional
 public class HotelServiceImpl implements HotelService {
+    private final HotelDao hotelDao;
+    private final EntityDTOConvert entityDTOConvert;
     @Override
     public void addHotel(HotelDTO hotelDTO) {
         hotelDTO.setHotelId(UtilData.generateHotelId());
+        hotelDTO.setHotelName(hotelDTO.getHotelName());
+        hotelDTO.setDescription(hotelDTO.getDescription());
+        hotelDTO.setLocation(hotelDTO.getLocation());
+        hotelDTO.setRating(hotelDTO.getRating());
+        hotelDTO.setPhone(hotelDTO.getPhone());
+        hotelDTO.setEmail(hotelDTO.getEmail());
+        hotelDTO.setAvailableRooms(hotelDTO.getAvailableRooms());
+
+        HotelEntity hotelEntity= entityDTOConvert.convertHotelDTOToHotelEntity(hotelDTO);
+        hotelDao.save(hotelEntity);
     }
 
     @Override
