@@ -1,5 +1,9 @@
 package lk.HotelMgmt.util;
 
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.UUID;
 
 public class UtilData {
@@ -18,6 +22,14 @@ public class UtilData {
         return "R/-"+ UUID.randomUUID().toString();
     }public static String generateUserId(){
         return "U/-"+ UUID.randomUUID().toString();
+    }
+
+
+    public static LocalDate generateTodayDate(){
+         return LocalDate.now();
+    }
+    public static Time generateCurrentTime(){
+         return Time.valueOf(LocalTime.now());
     }
 
 
