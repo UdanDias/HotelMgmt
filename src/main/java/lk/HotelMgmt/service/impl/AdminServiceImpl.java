@@ -5,6 +5,7 @@ import lk.HotelMgmt.dto.AdminDTO;
 import lk.HotelMgmt.entity.AdminEntity;
 import lk.HotelMgmt.exceptions.AdminNotFoundException;
 import lk.HotelMgmt.service.AdminService;
+import lk.HotelMgmt.util.EntityDTOConvert;
 import lk.HotelMgmt.util.UtilData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
     private final AdminDao adminDao;
+    private final EntityDTOConvert entityDTOConvert;
+
     @Override
     public void addAdmin(AdminDTO adminDTO) {
         adminDTO.setAdminId(UtilData.generateAdminId());
@@ -44,12 +47,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public AdminDTO getSelectedAdmin(String adminId) {
-        return null;
+        return entityDTOConvert.convertAdminEntityToAdminDTO(adminDao.findById(adminId).orElseThrow(()-> new AdminNotFoundException("Admin not found")));
 
     }
 
     @Override
     public List<AdminDTO> getAllAdmins() {
-        return List.of();
+        return entityDTOConvert.convertAdminEntityListToAdminDTOList(adminDao.findAll());
     }
 }
