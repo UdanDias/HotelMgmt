@@ -2,8 +2,10 @@ package lk.HotelMgmt.util;
 
 import lk.HotelMgmt.dto.AdminDTO;
 import lk.HotelMgmt.dto.BookingDTO;
+import lk.HotelMgmt.dto.HotelDTO;
 import lk.HotelMgmt.entity.AdminEntity;
 import lk.HotelMgmt.entity.BookingEntity;
+import lk.HotelMgmt.entity.HotelEntity;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -33,5 +35,14 @@ public class EntityDTOConvert {
     }
     public List<BookingDTO> convertBookingEntityListToBookingDTOList(List<BookingEntity> bookingEntityList){
         return modelMapper.map(bookingEntityList, new TypeToken<BookingDTO>(){}.getType());
+    }
+    public HotelDTO convertHotelDTOToHotelEntity(HotelDTO hotelDTO){
+        return modelMapper.map(hotelDTO, HotelDTO.class);
+    }
+    public HotelEntity convertHotelEntityToHotelEntity(HotelDTO hotelDTO){
+        return modelMapper.map(hotelDTO, HotelEntity.class);
+    }
+    public List<HotelDTO> convertHotelEntityListToHotelDTOList(List<HotelEntity> hotelEntityList){
+        return modelMapper.map(hotelEntityList, new TypeToken<HotelDTO>(){}.getType());
     }
 }
