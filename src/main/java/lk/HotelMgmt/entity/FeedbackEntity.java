@@ -1,8 +1,6 @@
 package lk.HotelMgmt.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +13,11 @@ import lombok.NoArgsConstructor;
 public class FeedbackEntity {
     @Id
     private String feedBackId;
-    private String userId;
-    private String hotelId;
+    @OneToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private UserEntity userId;
+    @OneToOne
+    @JoinColumn(name = "hotel_id",nullable = false)
+    private HotelEntity hotelId;
     private String review;
 }
