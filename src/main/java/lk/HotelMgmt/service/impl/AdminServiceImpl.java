@@ -2,6 +2,7 @@ package lk.HotelMgmt.service.impl;
 
 import lk.HotelMgmt.dao.AdminDao;
 import lk.HotelMgmt.dto.AdminDTO;
+import lk.HotelMgmt.entity.AdminEntity;
 import lk.HotelMgmt.exceptions.AdminNotFoundException;
 import lk.HotelMgmt.service.AdminService;
 import lk.HotelMgmt.util.UtilData;
@@ -25,13 +26,14 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void deleteAdmin(String adminId) {
-        adminDao.findById(adminId).orElseThrow(()-> new AdminNotFoundException("Admin not found"));
-        adminDao.deleteById(adminId);
+       AdminEntity adminEntity= adminDao.findById(adminId).orElseThrow(()-> new AdminNotFoundException("Admin not found"));
+        adminDao.delete(adminEntity);
 
     }
 
     @Override
     public void updateAdmin(String adminId, AdminDTO adminDTO) {
+
 
     }
 
