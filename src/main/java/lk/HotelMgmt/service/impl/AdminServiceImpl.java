@@ -12,6 +12,10 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void addAdmin(AdminDTO adminDTO) {
         adminDTO.setAdminId(UtilData.generateAdminId());
+        adminDTO.setUserId(adminDTO.getAdminId());
+        adminDTO.setAdminName(adminDTO.getAdminName());
+        adminDTO.setEmail(adminDTO.getEmail());
+        adminDTO.setPhone(adminDTO.getPhone());
     }
 
     @Override
