@@ -64,12 +64,12 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public BookingDTO getSelectedBooking(String bookingId) {
         BookingEntity bookingEntity=bookingDao.findById(bookingId).orElseThrow(()->new BookingNotFoundException("Booking not found"));
-
+        return entityDTOConvert.convertBookingEntityToBookingDTO(bookingEntity);
     }
 
     @Override
     public List<BookingDTO> getAllBookings() {
-        return List.of();
+        return entityDTOConvert.convertBookingEntityListToBookingDTOList(bookingDao.findAll());
     }
 
     public LocalDate calculateCheckOutDate(LocalDate bookedDate,int noOfDaysBooked) {
