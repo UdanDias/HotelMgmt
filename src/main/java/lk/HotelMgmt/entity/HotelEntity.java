@@ -27,4 +27,8 @@ public class HotelEntity {
     private Integer availableRooms;
     @OneToMany
     private List<BookingEntity> bookings;
+    @OneToMany
+    private List<CustomerEntity> customers;
+    @OneToMany
+    private List<FeedbackEntity> feedBacks;
 }

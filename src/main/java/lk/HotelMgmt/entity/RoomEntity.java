@@ -1,8 +1,6 @@
 package lk.HotelMgmt.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,11 +13,13 @@ import lombok.NoArgsConstructor;
 public class RoomEntity {
     @Id
     private String roomId;
-    private String hotelId;
+    @ManyToOne
+    @JoinColumn(name = "hotel_id",nullable = false)
+    private HotelEntity hotelId;
     private String roomNo;
     private String description;
     private String roomType;
-    private boolean isBooked;
+    private boolean isBooked=false;
     private int capacity;
     private double perDayPrice;
 }
