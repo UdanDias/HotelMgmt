@@ -1,5 +1,6 @@
 package lk.HotelMgmt.service.impl;
 
+import jakarta.transaction.Transactional;
 import lk.HotelMgmt.dao.AdminDao;
 import lk.HotelMgmt.dto.AdminDTO;
 import lk.HotelMgmt.entity.AdminEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AdminServiceImpl implements AdminService {
     private final AdminDao adminDao;
     private final EntityDTOConvert entityDTOConvert;

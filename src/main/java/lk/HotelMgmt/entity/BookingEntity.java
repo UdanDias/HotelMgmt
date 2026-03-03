@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Time;
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -24,10 +26,10 @@ public class BookingEntity {
     @OneToOne
     @JoinColumn(name = "user_id",nullable = false)
     private UserEntity userId;
-    private String checkInDate;
-    private String checkOutDate;
-    private String bookedDate;
-    private String bookedTime;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
+    private LocalDate bookedDate;
+    private Time bookedTime;
     private boolean isBookingActive=false;
     private Integer noOfDaysBooked;
 }
