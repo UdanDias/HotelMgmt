@@ -8,6 +8,7 @@ import lk.HotelMgmt.dto.BookingDTO;
 import lk.HotelMgmt.entity.BookingEntity;
 import lk.HotelMgmt.exceptions.BookingNotFoundException;
 import lk.HotelMgmt.service.BookingService;
+import lk.HotelMgmt.util.EntityDTOConvert;
 import lk.HotelMgmt.util.UtilData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class BookingServiceImpl implements BookingService {
     private final BookingDao bookingDao;
     private final HotelDao hotelDao;
     private final RoomDao roomDao;
-
+    private final EntityDTOConvert entityDTOConvert;
 
 
     @Override
@@ -56,12 +57,14 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public void deleteBooking(String bookingId) {
-
+        BookingEntity bookingEntity=bookingDao.findById(bookingId).orElseThrow(()->new BookingNotFoundException("Booking not found"));
+        bookingDao.delete(bookingEntity);
     }
 
     @Override
     public BookingDTO getSelectedBooking(String bookingId) {
-        return null;
+        BookingEntity bookingEntity=bookingDao.findById(bookingId).orElseThrow(()->new BookingNotFoundException("Booking not found"));
+
     }
 
     @Override
