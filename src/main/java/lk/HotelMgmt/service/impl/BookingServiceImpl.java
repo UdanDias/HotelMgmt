@@ -26,6 +26,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public void updateBooking(String bookingId, BookingDTO bookingDTO) {
 
+
     }
 
     @Override
