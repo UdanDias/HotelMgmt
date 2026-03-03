@@ -44,7 +44,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public AdminDTO getSelectedAdmin(String adminId) {
-
+        return null;
 
     }
 
