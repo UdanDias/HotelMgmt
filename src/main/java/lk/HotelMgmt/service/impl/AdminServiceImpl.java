@@ -33,13 +33,19 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void updateAdmin(String adminId, AdminDTO adminDTO) {
+        AdminEntity adminEntity =adminDao.findById(adminId).orElseThrow(()-> new AdminNotFoundException("Admin not found"));
+        adminEntity.setAdminName(adminDTO.getAdminName());
+        adminEntity.setEmail(adminDTO.getEmail());
+        adminEntity.setPhone(adminDTO.getPhone());
+        adminDao.save(adminEntity);
 
 
     }
 
     @Override
     public AdminDTO getSelectedAdmin(String adminId) {
-        return null;
+
+
     }
 
     @Override
