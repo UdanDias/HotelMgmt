@@ -36,7 +36,7 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public void updateHotel(String hotelId, HotelDTO hotelDTO) {
-        HotelEntity hotelEntity=hotelDao.findById(hotelId).orElseThrow(()->new HotelNotFoundException("Hotel not found");
+        HotelEntity hotelEntity=hotelDao.findById(hotelId).orElseThrow(()->new HotelNotFoundException("Hotel not found"));
         hotelEntity.setHotelName(hotelDTO.getHotelName());
         hotelEntity.setDescription(hotelDTO.getDescription());
         hotelEntity.setLocation(hotelDTO.getLocation());
