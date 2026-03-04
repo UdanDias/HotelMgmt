@@ -56,7 +56,8 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public HotelDTO getSelectedHotel(String hotelId) {
-        return null;
+        HotelEntity hotelEntity=hotelDao.findById(hotelId).orElseThrow(()->new HotelNotFoundException("Hotel not found"));
+        return entityDTOConvert.convertHotelEntityToHotelDTO(hotelEntity);
     }
 
     @Override
