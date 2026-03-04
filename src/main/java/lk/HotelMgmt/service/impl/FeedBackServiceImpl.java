@@ -2,7 +2,9 @@ package lk.HotelMgmt.service.impl;
 
 import lk.HotelMgmt.dao.FeedBackDao;
 import lk.HotelMgmt.dto.FeedBackDTO;
+import lk.HotelMgmt.entity.FeedBackEntity;
 import lk.HotelMgmt.service.FeedBackService;
+import lk.HotelMgmt.util.EntityDTOConvert;
 import lk.HotelMgmt.util.UtilData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,10 +17,13 @@ import java.util.List;
 @Transactional
 public class FeedBackServiceImpl implements FeedBackService {
     private final FeedBackDao feedBackDao;
+    private final EntityDTOConvert entityDTOConvert;
+
     @Override
     public void addFeedBack(FeedBackDTO feedBackDTO) {
         feedBackDTO.setFeedBackId(UtilData.generateFeedBackId());
-        fee
+        FeedBackEntity feedBackEntity=entityDTOConvert.convertFeedBackDTOToFeedbackEntity(feedBackDTO)
+        feedBackDao.save();
     }
 
     @Override
