@@ -1,8 +1,12 @@
 package lk.HotelMgmt.service.impl;
 
 import lk.HotelMgmt.dao.FeedBackDao;
+import lk.HotelMgmt.dao.HotelDao;
 import lk.HotelMgmt.dto.FeedBackDTO;
 import lk.HotelMgmt.entity.FeedBackEntity;
+import lk.HotelMgmt.entity.HotelEntity;
+import lk.HotelMgmt.exceptions.FeedBackNotFoundException;
+import lk.HotelMgmt.exceptions.HotelNotFoundException;
 import lk.HotelMgmt.service.FeedBackService;
 import lk.HotelMgmt.util.EntityDTOConvert;
 import lk.HotelMgmt.util.UtilData;
@@ -18,6 +22,7 @@ import java.util.List;
 public class FeedBackServiceImpl implements FeedBackService {
     private final FeedBackDao feedBackDao;
     private final EntityDTOConvert entityDTOConvert;
+    private final HotelDao hotelDao;
 
     @Override
     public void addFeedBack(FeedBackDTO feedBackDTO) {
@@ -34,7 +39,10 @@ public class FeedBackServiceImpl implements FeedBackService {
 
     @Override
     public void updateFeedBack(String feedBackId, FeedBackDTO feedBackDTO) {
-
+        FeedBackEntity feedBackEntity=feedBackDao.findById(feedBackId).orElseThrow(() -> new FeedBackNotFoundException("feedBack not found"));
+        HotelEntity hotelEntity=hotelDao.findById(feedBackDTO.getHotelId()).orElseThrow(() -> new HotelNotFoundException("hotel not found"));
+        feedBackEntity.setHotelId(hotelEntity);
+        feedBackEntity.setReview(feedBackDTO.getReview());
     }
 
     @Override
