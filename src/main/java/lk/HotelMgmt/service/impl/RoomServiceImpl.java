@@ -1,8 +1,10 @@
 package lk.HotelMgmt.service.impl;
 
 import jakarta.transaction.Transactional;
+import lk.HotelMgmt.dao.HotelDao;
 import lk.HotelMgmt.dao.RoomDao;
 import lk.HotelMgmt.dto.RoomDTO;
+import lk.HotelMgmt.entity.HotelEntity;
 import lk.HotelMgmt.entity.RoomEntity;
 import lk.HotelMgmt.exceptions.RoomNotFoundException;
 import lk.HotelMgmt.service.RoomService;
@@ -18,6 +20,7 @@ import java.util.List;
 public class RoomServiceImpl implements RoomService {
     private final RoomDao roomDao;
     private final EntityDTOConvert entityDTOConvert;
+    private final HotelDao hotelDao;
 
     @Override
     public void addRoom(RoomDTO roomDTO) {
@@ -34,6 +37,15 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void updateRoom(String roomId, RoomDTO roomDTO) {
+        RoomEntity roomEntity=roomDao.findById(roomId).orElseThrow(()->new RoomNotFoundException("Room not found"));
+        HotelEntity hotelEntity=hotelDao.findById(roomDTO.getHotelId()).orElseThrow(()->new RoomNotFoundException("Hotel not found"));
+        roomEntity.setHotelId(hotelEntity);
+        roomEntity.setRoomNo(roomDTO.getRoomNo());
+        roomEntity.setDescription(roomDTO.getDescription());
+        roomEntity.setRoomType(roomDTO.getRoomType());
+        roomEntity.setCapacity(roomDTO.getCapacity());
+        roomEntity.setBooked(roomDTO.isBooked());
+        roomEntity.setPerDayPrice(roomDTO.getPerDayPrice());
 
     }
 
