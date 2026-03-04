@@ -22,8 +22,9 @@ public class FeedBackServiceImpl implements FeedBackService {
     @Override
     public void addFeedBack(FeedBackDTO feedBackDTO) {
         feedBackDTO.setFeedBackId(UtilData.generateFeedBackId());
-        FeedBackEntity feedBackEntity=entityDTOConvert.convertFeedBackDTOToFeedbackEntity(feedBackDTO)
-        feedBackDao.save();
+        FeedBackEntity feedBackEntity=entityDTOConvert.convertFeedBackDTOToFeedbackEntity(feedBackDTO);
+        feedBackDao.save(feedBackEntity);
+
     }
 
     @Override
