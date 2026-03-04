@@ -3,6 +3,7 @@ package lk.HotelMgmt.service.impl;
 import jakarta.transaction.Transactional;
 import lk.HotelMgmt.dao.RoomDao;
 import lk.HotelMgmt.dto.RoomDTO;
+import lk.HotelMgmt.entity.RoomEntity;
 import lk.HotelMgmt.service.RoomService;
 import lk.HotelMgmt.util.EntityDTOConvert;
 import lk.HotelMgmt.util.UtilData;
@@ -20,11 +21,12 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public void addRoom(RoomDTO roomDTO) {
         roomDTO.setRoomId(UtilData.generateRoomId());
-        roomDao.save(entityDTOConvert.)
+        roomDao.save(entityDTOConvert.convertRoomDTOToRoomEntity(roomDTO));
     }
 
     @Override
     public void deleteRoom(String roomId) {
+        RoomEntity roomEntity=roomDao.findById(roomId).orElseThrow(())
 
     }
 
