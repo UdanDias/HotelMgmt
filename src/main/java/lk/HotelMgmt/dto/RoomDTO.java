@@ -14,7 +14,7 @@ public class RoomDTO implements Serializable {
     private String roomNo;
     private String description;
     private String roomType;
-    private boolean isBooked;
+    private boolean isBooked=false;
     private int capacity;
     private double perDayPrice;
 }
