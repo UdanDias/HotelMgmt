@@ -49,6 +49,8 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public void deleteHotel(String hotelId) {
+        HotelEntity hotelEntity=hotelDao.findById(hotelId).orElseThrow(()->new HotelNotFoundException("Hotel not found"));
+        hotelDao.delete(hotelEntity);
 
     }
 
