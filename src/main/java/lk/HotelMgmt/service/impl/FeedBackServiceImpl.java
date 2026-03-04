@@ -34,7 +34,8 @@ public class FeedBackServiceImpl implements FeedBackService {
 
     @Override
     public void deleteFeedBack(String feedBackId) {
-
+        FeedBackEntity feedBackEntity=feedBackDao.findById(feedBackId).orElseThrow(() -> new FeedBackNotFoundException("FeedBack not found"));
+        feedBackDao.delete(feedBackEntity);
     }
 
     @Override
