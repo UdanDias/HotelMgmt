@@ -54,6 +54,6 @@ public class FeedBackServiceImpl implements FeedBackService {
 
     @Override
     public List<FeedBackDTO> getAllFeedBacks() {
-        return List.of();
+        return entityDTOConvert.convertFeedBackEntityListToFeedBackDTOList(feedBackDao.findAll());
     }
 }
