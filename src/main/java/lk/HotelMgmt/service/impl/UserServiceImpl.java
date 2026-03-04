@@ -38,6 +38,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(String userId, UserDTO userDTO) {
+        UserEntity userEntity = userDao.findById(userId).orElseThrow(()->new UserNotFoundException("User not found"));
+        userEntity.setUsername(userDTO.getUsername());
+        userEntity.setPassword(userDTO.getPassword());
+        userEntity.setEmail(userDTO.getEmail());
+
 
     }
 
