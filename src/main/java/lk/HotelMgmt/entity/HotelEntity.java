@@ -30,7 +30,7 @@ public class HotelEntity {
     @OneToMany
     private List<CustomerEntity> customers;
     @OneToMany
-    private List<FeedbackEntity> feedBacks;
+    private List<FeedBackEntity> feedBacks;
     @OneToMany
     private List<RoomEntity> rooms;
 }

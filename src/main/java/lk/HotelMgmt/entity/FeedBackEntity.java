@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name="Feedback")
-public class FeedbackEntity {
+public class FeedBackEntity {
     @Id
     private String feedBackId;
     @OneToOne
