@@ -5,6 +5,7 @@ import lk.HotelMgmt.dao.UserDao;
 import lk.HotelMgmt.dto.AdminDTO;
 import lk.HotelMgmt.dto.UserDTO;
 import lk.HotelMgmt.entity.UserEntity;
+import lk.HotelMgmt.exceptions.UserNotFoundException;
 import lk.HotelMgmt.service.UserService;
 import lk.HotelMgmt.util.EntityDTOConvert;
 import lk.HotelMgmt.util.UtilData;
@@ -30,6 +31,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String userId) {
+        UserEntity userEntity=userDao.findById(userId).orElseThrow(()->new UserNotFoundException("User not found"));
+        userDao.delete(userEntity);
 
     }
 
