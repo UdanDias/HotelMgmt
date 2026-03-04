@@ -62,6 +62,6 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public List<RoomDTO> getAvailableRooms() {
-        return List.of();
+        return entityDTOConvert.convertRoomEntityListToRoomDTOList(roomDao.findAvailableRooms());
     }
 }
