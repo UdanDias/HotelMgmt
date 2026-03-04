@@ -51,12 +51,13 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public RoomDTO getSelectedRoom(String roomId) {
-        return null;
+        RoomEntity roomEntity=roomDao.findById(roomId).orElseThrow(()->new RoomNotFoundException("Room not found"));
+        return entityDTOConvert.convertRoomEntityToRoomDTO(roomEntity);
     }
 
     @Override
     public List<RoomDTO> getAllRooms() {
-        return List.of();
+        return entityDTOConvert.convertRoomEntityListToRoomDTOList(roomDao.findAll());
     }
 
     @Override
