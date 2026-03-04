@@ -48,7 +48,8 @@ public class FeedBackServiceImpl implements FeedBackService {
 
     @Override
     public FeedBackDTO getSelectedFeedBack(String feedBackId) {
-        return null;
+        FeedBackEntity feedBackEntity=feedBackDao.findById(feedBackId).orElseThrow(() -> new FeedBackNotFoundException("FeedBack not found"));
+        return entityDTOConvert.convertFeedBackentityToFeedBackDTO(feedBackEntity);
     }
 
     @Override

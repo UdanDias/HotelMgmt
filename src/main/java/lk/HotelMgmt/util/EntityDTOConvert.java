@@ -59,8 +59,8 @@ public class EntityDTOConvert {
     public List<UserDTO> convertUserEntityListToUserDTOList(List<UserEntity> userEntityList){
         return modelMapper.map(userEntityList, new TypeToken<UserDTO>(){}.getType());
     }
-    public FeedBackDTO convertFeedBackentityToFeedBackDTO(FeedBackDTO feedBackDTO){
-        return modelMapper.map(feedBackDTO, FeedBackDTO.class);
+    public FeedBackDTO convertFeedBackentityToFeedBackDTO(FeedBackEntity feedBackEntity){
+        return modelMapper.map(feedBackEntity, FeedBackDTO.class);
     }
     public FeedBackEntity convertFeedBackDTOToFeedbackEntity(FeedBackDTO feedBackDTO){
         return modelMapper.map(feedBackDTO, FeedBackEntity.class);
