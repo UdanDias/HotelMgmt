@@ -47,8 +47,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public AdminDTO getSelectedUser(String userId) {
-        return null;
+    public UserDTO getSelectedUser(String userId) {
+        UserEntity userEntity = userDao.findById(userId).orElseThrow(()->new UserNotFoundException("User not found"));
+        return entityDTOConvert.convertUserEntityToUserDTO(userEntity);
     }
 
     @Override

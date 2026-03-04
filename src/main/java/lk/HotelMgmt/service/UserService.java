@@ -9,7 +9,7 @@ public interface UserService {
     void addUser(UserDTO userDTO);
     void deleteUser(String userId);
     void updateUser(String userId,UserDTO userDTO);
-    AdminDTO getSelectedUser(String userId);
+    UserDTO getSelectedUser(String userId);
     List<UserDTO> getAllUsers();
 }
 
