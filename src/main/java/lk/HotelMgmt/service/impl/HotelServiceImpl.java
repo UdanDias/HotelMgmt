@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import lk.HotelMgmt.dao.HotelDao;
 import lk.HotelMgmt.dto.HotelDTO;
 import lk.HotelMgmt.entity.HotelEntity;
+import lk.HotelMgmt.exceptions.HotelNotFoundException;
 import lk.HotelMgmt.service.HotelService;
 import lk.HotelMgmt.util.EntityDTOConvert;
 import lk.HotelMgmt.util.UtilData;
@@ -35,6 +36,14 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public void updateHotel(String hotelId, HotelDTO hotelDTO) {
+        HotelEntity hotelEntity=hotelDao.findById(hotelId).orElseThrow(()->new HotelNotFoundException("Hotel not found");
+        hotelEntity.setHotelName(hotelDTO.getHotelName());
+        hotelEntity.setDescription(hotelDTO.getDescription());
+        hotelEntity.setLocation(hotelDTO.getLocation());
+        hotelEntity.setRating(hotelDTO.getRating());
+        hotelEntity.setPhone(hotelDTO.getPhone());
+        hotelEntity.setEmail(hotelDTO.getEmail());
+        hotelEntity.setAvailableRooms(hotelDTO.getAvailableRooms());
 
     }
 
