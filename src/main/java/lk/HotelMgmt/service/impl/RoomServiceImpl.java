@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import lk.HotelMgmt.dao.RoomDao;
 import lk.HotelMgmt.dto.RoomDTO;
 import lk.HotelMgmt.entity.RoomEntity;
+import lk.HotelMgmt.exceptions.RoomNotFoundException;
 import lk.HotelMgmt.service.RoomService;
 import lk.HotelMgmt.util.EntityDTOConvert;
 import lk.HotelMgmt.util.UtilData;
@@ -26,7 +27,8 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void deleteRoom(String roomId) {
-        RoomEntity roomEntity=roomDao.findById(roomId).orElseThrow(())
+        RoomEntity roomEntity=roomDao.findById(roomId).orElseThrow(()->new RoomNotFoundException("Room not found"));
+        roomDao.delete(roomEntity);
 
     }
 
