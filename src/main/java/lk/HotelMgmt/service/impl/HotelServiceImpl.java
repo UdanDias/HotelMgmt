@@ -62,6 +62,6 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public List<HotelDTO> getAllHotels() {
-        return List.of();
+        return entityDTOConvert.convertHotelEntityListToHotelDTOList(hotelDao.findAll());
     }
 }
