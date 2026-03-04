@@ -54,6 +54,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> getAllUsers() {
-        return List.of();
+        return entityDTOConvert.convertUserEntityListToUserDTOList(userDao.findAll());
     }
 }
