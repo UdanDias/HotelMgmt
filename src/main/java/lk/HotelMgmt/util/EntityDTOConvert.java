@@ -68,4 +68,13 @@ public class EntityDTOConvert {
     public List<FeedBackDTO> convertFeedBackEntityListToFeedBackDTOList(List<FeedBackEntity> feedBackEntityList){
         return modelMapper.map(feedBackEntityList, new TypeToken<UserDTO>(){}.getType());
     }
+    public CustomerEntity convertCustomerDTOToCustomerEntity(CustomerDTO customerDTO){
+        return modelMapper.map(customerDTO, CustomerEntity.class);
+    }
+    public CustomerDTO convertCustomerEntityToCustomerDTO(CustomerEntity customerEntity){
+        return modelMapper.map(customerEntity, CustomerDTO.class);
+    }
+    public List<CustomerDTO> convertCustomerEntityListToCustomerDTOList(List<CustomerEntity> customerEntityList){
+        return modelMapper.map(customerEntityList, new TypeToken<CustomerDTO>(){}.getType());
+    }
 }
