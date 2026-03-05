@@ -1,7 +1,9 @@
 package lk.HotelMgmt.service.impl;
 
+import lk.HotelMgmt.dao.BookingDao;
 import lk.HotelMgmt.dao.CustomerDao;
 import lk.HotelMgmt.dto.CustomerDTO;
+import lk.HotelMgmt.entity.BookingEntity;
 import lk.HotelMgmt.entity.CustomerEntity;
 import lk.HotelMgmt.service.CustomerService;
 import lk.HotelMgmt.util.UtilData;
@@ -14,6 +16,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerDao customerDao;
+    private final BookingDao bookingDao;
+
     @Override
     public void addCustomer(CustomerDTO customerDTO) {
         customerDTO.setCustId(UtilData.generateCustomerId());
@@ -23,7 +27,14 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void updateCustomer(String customerId, CustomerDTO customerDTO) {
-
+        CustomerEntity customerEntity=customerDao.findById(customerId).orElseThrow(()->new RuntimeException("Customer Not Found"));
+        List<BookingEntity> bookingEntity=bookingDao.findAll();
+        customerEntity.setEmail(customerDTO.getEmail());
+        customerEntity.setNIC(customerDTO.getNIC());
+        customerEntity.setDOB(customerDTO.getDOB());
+        customerEntity.setBookingId(bookingEntity);
+        customerEntity.setPhone(customerDTO.getPhone());
+        customerEntity.setCustName(customerDTO.getCustName());
     }
 
     @Override
