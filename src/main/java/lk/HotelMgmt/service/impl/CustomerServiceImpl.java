@@ -7,6 +7,7 @@ import lk.HotelMgmt.entity.BookingEntity;
 import lk.HotelMgmt.entity.CustomerEntity;
 import lk.HotelMgmt.exceptions.CustomerNotFoundException;
 import lk.HotelMgmt.service.CustomerService;
+import lk.HotelMgmt.util.EntityDTOConvert;
 import lk.HotelMgmt.util.UtilData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,12 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerDao customerDao;
     private final BookingDao bookingDao;
+    private final EntityDTOConvert entityDTOConvert;
 
     @Override
     public void addCustomer(CustomerDTO customerDTO) {
         customerDTO.setCustId(UtilData.generateCustomerId());
-        CustomerEntity customerEntity=customerDao.findById(customerDTO.getCustId()).orElseThrow(()->new CustomerNotFoundException("Customer Not Found"));
+        CustomerEntity customerEntity=entityDTOConvert.convertCustomerDTOToCustomerEntity(customerDTO);
         customerDao.save(customerEntity);
     }
 
@@ -40,12 +42,14 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomer(String customerId) {
-        CustomerEntity customerEntity=customerDao.findById(customerId).orElseThrow(()->new CustomerNotFoundException("Customer Not Found"));
+        CustomerEntity customerEntity = customerDao.findById(customerId).orElseThrow(() -> new CustomerNotFoundException("Customer Not Found"));
         customerDao.delete(customerEntity);
-
+    }
     @Override
     public CustomerDTO getSelectedCustomer(String customerId) {
-        return null;
+        CustomerEntity customerEntity=customerDao.findById(customerId).orElseThrow(() -> new CustomerNotFoundException("Customer Not Found"));
+        return entityDTOConvert.convertCustomerEntityToCustomerDTO(customerEntity);
+
     }
 
     @Override
