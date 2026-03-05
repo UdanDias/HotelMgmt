@@ -54,6 +54,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<CustomerDTO> getAllCustomers() {
-        return List.of();
+        return entityDTOConvert.convertCustomerEntityListToCustomerDTOList(customerDao.findAll());
     }
 }
