@@ -47,7 +47,17 @@ public class AdminController {
         if (adminId == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        try {
+            adminService.deleteAdmin(adminId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        } catch (AdminNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     @PatchMapping(value = "/updateadmin", consumes = APPLICATION_JSON_VALUE,produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> updateAdmin(@RequestParam String adminId,@RequestBody AdminDTO adminDTO){
