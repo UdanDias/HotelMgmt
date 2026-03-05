@@ -82,14 +82,17 @@ public class AdminController {
         if (adminId == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return ResponseEntity.ok(new AdminDTO(
-                "ADM-001",
-                "USR-101",
-                "John Smith",
-                "john.smith@example.com",
-                "+1-555-0101"));
+        try {
+            adminService.getSelectedAdmin(adminId);
+            return new ResponseEntity<>(HttpStatus.OK);
 
-
+        } catch (AdminNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     @GetMapping("/getAllAdmins")
     public ResponseEntity<List<AdminDTO>> getAllAdmins() {
