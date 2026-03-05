@@ -96,25 +96,16 @@ public class AdminController {
     }
     @GetMapping("/getAllAdmins")
     public ResponseEntity<List<AdminDTO>> getAllAdmins() {
-        List<AdminDTO> adminList = new ArrayList<>();
-        adminList.add(new AdminDTO(
-                "ADM-001",
-                "USR-101",
-                "John Smith",
-                "john.smith@example.com",
-                "+1-555-0101"));
-        adminList.add(new AdminDTO(
-                "ADM-002",
-                "USR-102",
-                "Sarah Johnson",
-                "sarah.johnson@example.com",
-                "+1-555-0102"));
-        adminList.add(new AdminDTO(
-                "ADM-003",
-                "USR-103",
-                "Michael Lee",
-                "michael.lee@example.com",
-                "+1-555-0103"));
-        return ResponseEntity.ok(adminList);
+        try {
+            adminService.getAllAdmins();
+            return new ResponseEntity<>(HttpStatus.OK);
+
+        } catch (AdminNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
