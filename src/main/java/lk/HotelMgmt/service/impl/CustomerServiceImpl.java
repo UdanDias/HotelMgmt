@@ -5,6 +5,7 @@ import lk.HotelMgmt.dao.CustomerDao;
 import lk.HotelMgmt.dto.CustomerDTO;
 import lk.HotelMgmt.entity.BookingEntity;
 import lk.HotelMgmt.entity.CustomerEntity;
+import lk.HotelMgmt.exceptions.CustomerNotFoundException;
 import lk.HotelMgmt.service.CustomerService;
 import lk.HotelMgmt.util.UtilData;
 import lombok.RequiredArgsConstructor;
@@ -21,13 +22,13 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void addCustomer(CustomerDTO customerDTO) {
         customerDTO.setCustId(UtilData.generateCustomerId());
-        CustomerEntity customerEntity=customerDao.findById(customerDTO.getCustId()).orElseThrow(()->new RuntimeException("Customer Not Found"));
+        CustomerEntity customerEntity=customerDao.findById(customerDTO.getCustId()).orElseThrow(()->new CustomerNotFoundException("Customer Not Found"));
         customerDao.save(customerEntity);
     }
 
     @Override
     public void updateCustomer(String customerId, CustomerDTO customerDTO) {
-        CustomerEntity customerEntity=customerDao.findById(customerId).orElseThrow(()->new RuntimeException("Customer Not Found"));
+        CustomerEntity customerEntity=customerDao.findById(customerId).orElseThrow(()->new CustomerNotFoundException("Customer Not Found"));
         List<BookingEntity> bookingEntity=bookingDao.findAll();
         customerEntity.setEmail(customerDTO.getEmail());
         customerEntity.setNIC(customerDTO.getNIC());
@@ -39,8 +40,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomer(String customerId) {
-
-    }
+        CustomerEntity customerEntity=customerDao.findById(customerId).orElseThrow(()->new CustomerNotFoundException("Customer Not Found"));
+        customerDao.delete(customerEntity);
 
     @Override
     public CustomerDTO getSelectedCustomer(String customerId) {
