@@ -64,8 +64,18 @@ public class AdminController {
         if (adminId == null||adminDTO == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        System.out.println(adminDTO);
-        return ResponseEntity.noContent().build();
+        try {
+            adminService.updateAdmin(adminId,adminDTO);
+            return ResponseEntity.noContent().build();
+
+        } catch (AdminNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
     @GetMapping("/getSelectedAdmin")
     public ResponseEntity<AdminDTO> getSelectedAdmin(@RequestParam String adminId){
