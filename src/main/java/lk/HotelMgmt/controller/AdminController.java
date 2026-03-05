@@ -1,6 +1,9 @@
 package lk.HotelMgmt.controller;
 
 import lk.HotelMgmt.dto.AdminDTO;
+import lk.HotelMgmt.exceptions.AdminNotFoundException;
+import lk.HotelMgmt.service.AdminService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +17,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("/api/v1/admin")
+@RequiredArgsConstructor
 public class AdminController {
+    private final AdminService adminService;
 
     @GetMapping
     public String healthtest(){
@@ -25,7 +30,17 @@ public class AdminController {
         if (adminDTO.getUserId() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        try {
+            adminService.addAdmin(adminDTO);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+
+        } catch (AdminNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     @DeleteMapping("/deleteadmin")
     public ResponseEntity<Void> deleteAdmin(@RequestParam String adminId){
