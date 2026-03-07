@@ -23,8 +23,10 @@ public class AdminController {
 
     @GetMapping
     public String healthtest(){
+
         return "Health controller is running";
     }
+
     @PostMapping(value = "addadmin",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addAdmin(@RequestBody AdminDTO adminDTO) {
         if (adminDTO.getUserId() == null) {
