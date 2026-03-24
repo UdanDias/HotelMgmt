@@ -25,12 +25,14 @@ public class HotelEntity {
     private String phone;
     private String email;
     private Integer availableRooms;
-    @OneToMany
+
+    @OneToMany(mappedBy = "hotel")
     private List<BookingEntity> bookings;
-    @OneToMany
-    private List<CustomerEntity> customers;
-    @OneToMany
+
+    @OneToMany(mappedBy = "hotel")
     private List<FeedBackEntity> feedBacks;
-    @OneToMany
+
+    @OneToMany(mappedBy = "hotel")
     private List<RoomEntity> rooms;
+
 }

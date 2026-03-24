@@ -13,11 +13,14 @@ import lombok.NoArgsConstructor;
 public class FeedBackEntity {
     @Id
     private String feedBackId;
-    @OneToOne
-    @JoinColumn(name = "user_id",nullable = false)
-    private UserEntity userId;
-    @OneToOne
-    @JoinColumn(name = "hotel_id",nullable = false)
-    private HotelEntity hotelId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
+    private HotelEntity hotel;
+
     private String review;
 }

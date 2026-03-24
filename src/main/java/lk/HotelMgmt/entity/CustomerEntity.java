@@ -15,12 +15,14 @@ import java.util.List;
 public class CustomerEntity {
     @Id
     private String custId;
-    @OneToOne()
-    @JoinColumn(name = "user_id",nullable = false)
-    private UserEntity userId;
-    @OneToMany
-    @JoinColumn(name = "booking_id")
-    private List<BookingEntity> bookingId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+    @OneToMany(mappedBy ="customer" )
+    private List<BookingEntity> bookings;
+
     private String custName;
     private String email;
     private String phone;
