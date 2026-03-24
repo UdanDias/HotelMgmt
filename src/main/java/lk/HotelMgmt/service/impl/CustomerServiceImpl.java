@@ -35,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
         customerEntity.setEmail(customerDTO.getEmail());
         customerEntity.setNIC(customerDTO.getNIC());
         customerEntity.setDOB(customerDTO.getDOB());
-        customerEntity.setBookingId(bookingEntity);
+        customerEntity.setBookings(bookingEntity);
         customerEntity.setPhone(customerDTO.getPhone());
         customerEntity.setCustName(customerDTO.getCustName());
     }

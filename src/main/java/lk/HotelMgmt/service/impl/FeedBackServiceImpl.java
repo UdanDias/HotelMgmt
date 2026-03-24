@@ -42,7 +42,7 @@ public class FeedBackServiceImpl implements FeedBackService {
     public void updateFeedBack(String feedBackId, FeedBackDTO feedBackDTO) {
         FeedBackEntity feedBackEntity=feedBackDao.findById(feedBackId).orElseThrow(() -> new FeedBackNotFoundException("feedBack not found"));
         HotelEntity hotelEntity=hotelDao.findById(feedBackDTO.getHotelId()).orElseThrow(() -> new HotelNotFoundException("hotel not found"));
-        feedBackEntity.setHotelId(hotelEntity);
+        feedBackEntity.setHotel(hotelEntity);
         feedBackEntity.setReview(feedBackDTO.getReview());
     }
 

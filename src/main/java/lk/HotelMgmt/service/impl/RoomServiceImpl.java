@@ -39,7 +39,7 @@ public class RoomServiceImpl implements RoomService {
     public void updateRoom(String roomId, RoomDTO roomDTO) {
         RoomEntity roomEntity=roomDao.findById(roomId).orElseThrow(()->new RoomNotFoundException("Room not found"));
         HotelEntity hotelEntity=hotelDao.findById(roomDTO.getHotelId()).orElseThrow(()->new RoomNotFoundException("Hotel not found"));
-        roomEntity.setHotelId(hotelEntity);
+        roomEntity.setHotel(hotelEntity);
         roomEntity.setRoomNo(roomDTO.getRoomNo());
         roomEntity.setDescription(roomDTO.getDescription());
         roomEntity.setRoomType(roomDTO.getRoomType());

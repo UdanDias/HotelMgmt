@@ -45,8 +45,8 @@ public class BookingServiceImpl implements BookingService {
         BookingEntity bookingEntity= bookingDao.findById(bookingId).orElseThrow(()->new BookingNotFoundException("Booking not found"));
 
 
-        bookingEntity.setHotelId(hotelDao.getReferenceById(bookingDTO.getHotelId()));
-        bookingEntity.setRoomId(roomDao.getReferenceById(bookingDTO.getRoomId()));
+        bookingEntity.setHotel(hotelDao.getReferenceById(bookingDTO.getHotelId()));
+        bookingEntity.setRooms(roomDao.findAll());
         bookingEntity.setCheckInDate(bookingDTO.getCheckInDate());
         bookingEntity.setBookedDate(UtilData.generateTodayDate());
         bookingEntity.setBookedTime(UtilData.generateCurrentTime());

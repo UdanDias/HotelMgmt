@@ -42,7 +42,6 @@ public class AdminServiceImpl implements AdminService {
     public void updateAdmin(String adminId, AdminDTO adminDTO) {
         AdminEntity adminEntity =adminDao.findById(adminId).orElseThrow(()-> new AdminNotFoundException("Admin not found"));
         adminEntity.setAdminName(adminDTO.getAdminName());
-        adminEntity.setEmail(adminDTO.getEmail());
         adminEntity.setPhone(adminDTO.getPhone());
         adminDao.save(adminEntity);
 
