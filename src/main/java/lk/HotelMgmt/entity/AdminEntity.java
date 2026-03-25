@@ -16,9 +16,10 @@ import org.hibernate.engine.internal.Cascade;
 public class AdminEntity {
     @Id
     private String adminId;
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+//    @OneToOne
+//    @JoinColumn(name = "user_id")
+//    private UserEntity user;
     private String adminName;
+    private String email;
     private String phone;
 }

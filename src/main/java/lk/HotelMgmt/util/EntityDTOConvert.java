@@ -21,7 +21,7 @@ public class EntityDTOConvert {
         return modelMapper.map(adminEntity, AdminDTO.class);
     }
     public List<AdminDTO> convertAdminEntityListToAdminDTOList(List<AdminEntity> adminEntityList){
-        return modelMapper.map(adminEntityList, new TypeToken<AdminEntity>(){}.getType());
+        return modelMapper.map(adminEntityList, new TypeToken<List<AdminDTO>>(){}.getType());
     }
     public BookingEntity convertBookingDTOToBookingEntity(BookingDTO bookingDTO){
         return modelMapper.map(bookingDTO, BookingEntity.class);
@@ -30,7 +30,7 @@ public class EntityDTOConvert {
         return modelMapper.map(bookingEntity, BookingDTO.class);
     }
     public List<BookingDTO> convertBookingEntityListToBookingDTOList(List<BookingEntity> bookingEntityList){
-        return modelMapper.map(bookingEntityList, new TypeToken<BookingDTO>(){}.getType());
+        return modelMapper.map(bookingEntityList, new TypeToken<List<BookingDTO>>(){}.getType());
     }
     public HotelEntity convertHotelDTOToHotelEntity(HotelDTO hotelDTO){
         return modelMapper.map(hotelDTO, HotelEntity.class);
@@ -39,7 +39,7 @@ public class EntityDTOConvert {
         return modelMapper.map(hotelEntity, HotelDTO.class);
     }
     public List<HotelDTO> convertHotelEntityListToHotelDTOList(List<HotelEntity> hotelEntityList){
-        return modelMapper.map(hotelEntityList, new TypeToken<HotelDTO>(){}.getType());
+        return modelMapper.map(hotelEntityList, new TypeToken<List<HotelDTO>>(){}.getType());
     }
     public RoomDTO convertRoomEntityToRoomDTO(RoomEntity roomEntity){
         return modelMapper.map(roomEntity, RoomDTO.class);
@@ -48,7 +48,7 @@ public class EntityDTOConvert {
         return modelMapper.map(roomDTO, RoomEntity.class);
     }
     public List<RoomDTO> convertRoomEntityListToRoomDTOList(List<RoomEntity> roomEntityList){
-        return modelMapper.map(roomEntityList, new TypeToken<RoomDTO>(){}.getType());
+        return modelMapper.map(roomEntityList, new TypeToken<List<RoomDTO>>(){}.getType());
     }
     public UserEntity convertUserDTOToUserEntity(UserDTO userDTO){
         return modelMapper.map(userDTO, UserEntity.class);
@@ -57,7 +57,7 @@ public class EntityDTOConvert {
         return modelMapper.map(userEntity, UserDTO.class);
     }
     public List<UserDTO> convertUserEntityListToUserDTOList(List<UserEntity> userEntityList){
-        return modelMapper.map(userEntityList, new TypeToken<UserDTO>(){}.getType());
+        return modelMapper.map(userEntityList, new TypeToken<List<UserDTO>>(){}.getType());
     }
     public FeedBackDTO convertFeedBackentityToFeedBackDTO(FeedBackEntity feedBackEntity){
         return modelMapper.map(feedBackEntity, FeedBackDTO.class);
@@ -66,7 +66,7 @@ public class EntityDTOConvert {
         return modelMapper.map(feedBackDTO, FeedBackEntity.class);
     }
     public List<FeedBackDTO> convertFeedBackEntityListToFeedBackDTOList(List<FeedBackEntity> feedBackEntityList){
-        return modelMapper.map(feedBackEntityList, new TypeToken<UserDTO>(){}.getType());
+        return modelMapper.map(feedBackEntityList, new TypeToken<List<FeedBackDTO>>(){}.getType());
     }
     public CustomerEntity convertCustomerDTOToCustomerEntity(CustomerDTO customerDTO){
         return modelMapper.map(customerDTO, CustomerEntity.class);
@@ -75,6 +75,6 @@ public class EntityDTOConvert {
         return modelMapper.map(customerEntity, CustomerDTO.class);
     }
     public List<CustomerDTO> convertCustomerEntityListToCustomerDTOList(List<CustomerEntity> customerEntityList){
-        return modelMapper.map(customerEntityList, new TypeToken<CustomerDTO>(){}.getType());
+        return modelMapper.map(customerEntityList, new TypeToken<List<CustomerDTO>>(){}.getType());
     }
 }

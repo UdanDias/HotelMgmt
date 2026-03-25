@@ -2,9 +2,12 @@ package lk.HotelMgmt.service.impl;
 
 import jakarta.transaction.Transactional;
 import lk.HotelMgmt.dao.AdminDao;
+import lk.HotelMgmt.dao.UserDao;
 import lk.HotelMgmt.dto.AdminDTO;
 import lk.HotelMgmt.entity.AdminEntity;
+import lk.HotelMgmt.entity.UserEntity;
 import lk.HotelMgmt.exceptions.AdminNotFoundException;
+import lk.HotelMgmt.exceptions.UserNotFoundException;
 import lk.HotelMgmt.service.AdminService;
 import lk.HotelMgmt.util.EntityDTOConvert;
 import lk.HotelMgmt.util.UtilData;
@@ -19,16 +22,17 @@ import java.util.List;
 public class AdminServiceImpl implements AdminService {
     private final AdminDao adminDao;
     private final EntityDTOConvert entityDTOConvert;
+    private final UserDao userDao;
 
     @Override
     public void addAdmin(AdminDTO adminDTO) {
+
+//        UserEntity user = userDao.findById(adminDTO.getUserId()).orElseThrow(()->new UserNotFoundException("User not found"));
         adminDTO.setAdminId(UtilData.generateAdminId());
-        adminDTO.setUserId(adminDTO.getAdminId());
-        adminDTO.setAdminName(adminDTO.getAdminName());
-        adminDTO.setEmail(adminDTO.getEmail());
-        adminDTO.setPhone(adminDTO.getPhone());
 
-
+        AdminEntity adminEntity=entityDTOConvert.convertAdminDTOToAdminEntity(adminDTO);
+//        adminEntity.setUser(user);
+        adminDao.save(adminEntity);
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Data
 public class AdminDTO implements Serializable {
     private String adminId;
-    private String userId;
+//    private String userId;
     private String adminName;
     private String email;
     private String phone;

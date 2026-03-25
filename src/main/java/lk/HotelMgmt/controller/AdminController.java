@@ -29,9 +29,7 @@ public class AdminController {
 
     @PostMapping(value = "addadmin",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addAdmin(@RequestBody AdminDTO adminDTO) {
-        if (adminDTO.getUserId() == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+
         try {
             adminService.addAdmin(adminDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -78,34 +76,34 @@ public class AdminController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-    }
-    @GetMapping("/getSelectedAdmin")
-    public ResponseEntity<AdminDTO> getSelectedAdmin(@RequestParam String adminId){
-        if (adminId == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    }@GetMapping("/getAllAdmins")
+    public ResponseEntity<List<AdminDTO>> getAllAdmins() {
         try {
-            adminService.getSelectedAdmin(adminId);
-            return new ResponseEntity<>(HttpStatus.OK);
+            List<AdminDTO> admins = adminService.getAllAdmins(); // ✅ capture result
+            return ResponseEntity.ok(admins);                   // ✅ return it
 
         } catch (AdminNotFoundException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/getAllAdmins")
-    public ResponseEntity<List<AdminDTO>> getAllAdmins() {
+
+    @GetMapping("/getSelectedAdmin")
+    public ResponseEntity<AdminDTO> getSelectedAdmin(@RequestParam String adminId) {
+        if (adminId == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         try {
-            adminService.getAllAdmins();
-            return new ResponseEntity<>(HttpStatus.OK);
+            AdminDTO admin = adminService.getSelectedAdmin(adminId); // ✅ capture result
+            return ResponseEntity.ok(admin);                         // ✅ return it
 
         } catch (AdminNotFoundException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
